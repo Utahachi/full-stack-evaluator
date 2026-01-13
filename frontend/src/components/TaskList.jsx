@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -11,9 +12,11 @@ function TaskList() {
       .catch(err => {
         console.error('Error fetching tasks:', err);
         setError('Failed to load tasks');
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
-
+  
+  if (loading) return <p>Loading…</p>;
   if (error) return <div>{error}</div>;
 
   return (
