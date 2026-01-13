@@ -42,8 +42,17 @@ namespace TaskManager.API
 
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
+            
+            // Map to DTO
+            var response = new TaskResponseDto
+            {
+                Id = task.Id,
+                Title = task.Title,
+                IsDone = task.IsDone,
+                UserId = task.UserId
+            };
 
-            return Ok(task);
+            return Ok(response);
         }
 
         [HttpPut("{id}")] 
