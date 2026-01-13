@@ -1,13 +1,13 @@
-import './App.css'
-import Tasks from "./Tasks"
+import './App.css';                 // styles for the app
+import TaskList from './components/TaskList';  // fetches data from backend
 
 function App() {
   return (
     <div className="app">
       <h1>📝 React Task Evaluator</h1>
-      <Tasks />
+      <TaskList />                 {/* replaces old <Tasks /> */}
     </div>
   );
 }
 
-export default App
+export default App;
