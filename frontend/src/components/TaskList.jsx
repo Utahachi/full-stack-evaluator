@@ -6,7 +6,7 @@ function TaskList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5215/tasks')
+    axios.get(`${import.meta.env.VITE_API_URL}/tasks`)
       .then(res => setTasks(res.data))
       .catch(err => {
         console.error('Error fetching tasks:', err);
