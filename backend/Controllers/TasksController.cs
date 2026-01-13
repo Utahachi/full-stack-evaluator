@@ -27,12 +27,23 @@ namespace TaskManager.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TaskItem task)
+        public async Task<IActionResult> Create([FromBody] CreateTaskDto dto)
         {
-            
+            var user = await _context.Users.FindAsync(dto.UserId);
+            if (user == null)
+                return BadRequest("User not found");
+
+            var task = new TaskItem
+            {
+                Title = dto.Title,
+                IsDone = dto.IsDone,
+                UserId = dto.UserId
+            };
+
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = task.Id }, task);
+
+            return Ok(task);
         }
 
         [HttpPut("{id}")] 
