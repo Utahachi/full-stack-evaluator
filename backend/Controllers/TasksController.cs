@@ -69,7 +69,14 @@ namespace TaskManager.API
             task.IsDone = updated.IsDone;
             await _context.SaveChangesAsync();
 
-            return Ok(task);
+            // Return a clean response
+            return Ok(new
+            {
+                task.Id,
+                task.Title,
+                task.IsDone,
+                task.UserId
+            });
         }
 
         [HttpDelete("{id}")]
