@@ -42,7 +42,7 @@ namespace TaskManager.API
 
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
-            
+
             // Map to DTO
             var response = new TaskResponseDto
             {
@@ -60,6 +60,10 @@ namespace TaskManager.API
         {
             var task = await _context.Tasks.FindAsync(id);
             if (task == null) return NotFound();
+
+            // Check if the user exists
+            var user = await _context.Users.FindAsync(updated.UserId);
+            if (user == null) return BadRequest("User not found");
 
             task.Title = updated.Title;
             task.IsDone = updated.IsDone;
