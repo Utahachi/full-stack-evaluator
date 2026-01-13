@@ -50,7 +50,7 @@ namespace TaskManager.Controllers
                 UserId = task.UserId
             });
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTaskDto dto)
         {
@@ -80,28 +80,19 @@ namespace TaskManager.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{id}")] 
-        public async Task<IActionResult> Update(int id, [FromBody] TaskItem updated)
+       [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateTaskDto dto)
         {
             var task = await _context.Tasks.FindAsync(id);
             if (task == null) return NotFound();
 
-            // Check if the user exists
-            var user = await _context.Users.FindAsync(updated.UserId);
-            if (user == null) return BadRequest("User not found");
+            task.Title = dto.Title;
+            task.IsDone = dto.IsDone;
+            task.UserId = dto.UserId;
 
-            task.Title = updated.Title;
-            task.IsDone = updated.IsDone;
             await _context.SaveChangesAsync();
 
-            // Return a clean response
-            return Ok(new
-            {
-                task.Id,
-                task.Title,
-                task.IsDone,
-                task.UserId
-            });
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
