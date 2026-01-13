@@ -1,6 +1,9 @@
-public class UpdateTaskDto
+namespace TaskManager.DTOs
 {
-    public required string Title { get; set; }
-    public bool IsDone { get; set; }
-    public int UserId { get; set; }
+    public class UpdateTaskDto
+    {
+        public required string Title { get; set; }
+        public bool IsDone { get; set; }
+        public int UserId { get; set; }
+    }
 }

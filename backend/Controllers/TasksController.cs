@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using TaskManager.Models;
 using TaskManager.Data;
+using TaskManager.DTOs;
 namespace TaskManager.API
 {
     [Route("tasks")]
