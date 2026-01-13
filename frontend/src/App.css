@@ -105,7 +105,11 @@
   padding: 12px 15px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;  /* make sure nothing covers it */
+  z-index: 1;          /* ensures it sits above other elements */
+  opacity: 1;          /* in case old CSS had hover opacity */
 }
+
 
 .app ul li button {
   margin-left: 8px;
