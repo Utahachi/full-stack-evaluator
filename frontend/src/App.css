@@ -1,3 +1,7 @@
+/* ==============================
+   Global / Root Styles
+============================== */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -19,12 +23,8 @@
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -39,4 +39,97 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* ==============================
+   Task Evaluator App Styles
+   Scoped under .app
+============================== */
+
+.app {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f8f9fa; /* light gray background */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.app h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.app form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.app form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.app form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.app form button:hover {
+  background-color: #4338ca;
+}
+
+.app ul {
+  list-style: none;
+  padding: 0;
+}
+
+.app ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.app ul li button {
+  margin-left: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.app ul li button:hover {
+  opacity: 0.8;
+}
+
+.app ul li button.edit-btn {
+  background-color: #10b981; /* Green for Edit */
+  color: white;
+}
+
+.app ul li button.delete-btn {
+  background-color: #ef4444; /* Red for Delete */
+  color: white;
+}
+
+.app input[type="text"] {
+  font-size: 16px;
 }
