@@ -1,139 +1,172 @@
 /* ==============================
-   Global / Root Styles
+   Task Evaluator App - Professional Design
 ============================== */
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* ==============================
-   Task Evaluator App Styles
-   Scoped under .app
-============================== */
-
+/* General App Wrapper */
 .app {
   max-width: 600px;
   margin: 50px auto;
-  padding: 20px;
-  background-color: #f8f9fa; /* light gray background */
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  padding: 30px 25px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', Arial, sans-serif;
+  color: #1f2937; /* dark gray */
 }
 
+/* Heading */
 .app h1 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #111827;
 }
+
+/* ==============================
+   Form Styles
+============================== */
 
 .app form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 .app form input {
   flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db; /* light gray border */
   font-size: 16px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.app form input:focus {
+  outline: none;
+  border-color: #4f46e5; /* Indigo focus */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
 .app form button {
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
   border: none;
-  background-color: #4f46e5; /* Indigo */
-  color: white;
-  font-weight: bold;
+  background-color: #4f46e5;
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 .app form button:hover {
   background-color: #4338ca;
+  transform: translateY(-1px);
 }
+
+/* ==============================
+   Task List
+============================== */
 
 .app ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .app ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  margin-bottom: 10px;
-  padding: 12px 15px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  position: relative;  /* make sure nothing covers it */
-  z-index: 1;          /* ensures it sits above other elements */
-  opacity: 1;          /* in case old CSS had hover opacity */
+  background-color: #f9fafb;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s, box-shadow 0.2s;
 }
 
+.app ul li:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.app ul li span {
+  flex: 1;
+  font-size: 16px;
+}
+
+/* ==============================
+   Task Buttons
+============================== */
 
 .app ul li button {
   margin-left: 8px;
-  padding: 5px 10px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.1s, opacity 0.2s;
 }
 
 .app ul li button:hover {
-  opacity: 0.8;
+  transform: translateY(-1px);
+  opacity: 0.9;
 }
 
+/* Edit button */
 .app ul li button.edit-btn {
-  background-color: #10b981; /* Green for Edit */
-  color: white;
+  background-color: #10b981; /* green */
+  color: #fff;
 }
 
+/* Delete button */
 .app ul li button.delete-btn {
-  background-color: #ef4444; /* Red for Delete */
-  color: white;
+  background-color: #ef4444; /* red */
+  color: #fff;
 }
 
-.app input[type="text"] {
+/* Save / Cancel buttons for edit mode */
+.app ul li button.save-btn {
+  background-color: #4f46e5; /* indigo */
+  color: #fff;
+}
+
+.app ul li button.cancel-btn {
+  background-color: #9ca3af; /* gray */
+  color: #fff;
+}
+
+/* Input inside edit mode */
+.app ul li input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
   font-size: 16px;
+  margin-right: 8px;
+}
+
+/* ==============================
+   Empty State
+============================== */
+
+.app p {
+  text-align: center;
+  font-size: 16px;
+  color: #6b7280; /* gray text */
+  margin-top: 20px;
+}
+
+/* ==============================
+   Loading state
+============================== */
+
+.app .loading {
+  text-align: center;
+  font-size: 16px;
+  color: #4f46e5; /* indigo */
+  font-weight: 600;
 }
