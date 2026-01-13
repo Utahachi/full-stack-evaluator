@@ -15,6 +15,24 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 var app = builder.Build();
 
+// Seed a test user if none exists
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // Check if there are any users
+    if (!context.Users.Any())
+    {
+        var user = new TaskManager.Models.User
+        {
+            Email = "test@test.com",
+            PasswordHash = "dummyhash"
+        };
+        context.Users.Add(user);
+        context.SaveChanges();
+        Console.WriteLine($"Seeded test user with Id = {user.Id}");
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
