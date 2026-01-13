@@ -2,10 +2,19 @@
    Task Evaluator App - Professional Design
 ============================== */
 
+/* Center everything horizontally and vertically */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  font-family: 'Inter', Arial, sans-serif;
+}
+
 /* General App Wrapper */
 .app {
   max-width: 600px;
-  margin: 50px auto;
   padding: 30px 25px;
   background-color: #ffffff;
   border-radius: 16px;
