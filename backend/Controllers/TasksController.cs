@@ -34,7 +34,23 @@ namespace TaskManager.Controllers
 
             return Ok(tasks);
         }
+        
+        // GET /tasks/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TaskResponseDto>> GetById(int id)
+        {
+            var task = await _context.Tasks.FindAsync(id);
+            if (task == null) return NotFound();
 
+            return Ok(new TaskResponseDto
+            {
+                Id = task.Id,
+                Title = task.Title,
+                IsDone = task.IsDone,
+                UserId = task.UserId
+            });
+        }
+        
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTaskDto dto)
         {
