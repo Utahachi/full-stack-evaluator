@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using TaskManager.Models;
 using TaskManager.Data;
 using TaskManager.DTOs;
-namespace TaskManager.API
+
+namespace TaskManager.Controllers
 {
     [Route("tasks")]
     [ApiController]
@@ -20,10 +21,17 @@ namespace TaskManager.API
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<TaskResponseDto>>> GetAll()
         {
-            
-            var tasks = await _context.Tasks.ToListAsync();
+            var tasks = await _context.Tasks
+                .Select(t => new TaskResponseDto
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    IsDone = t.IsDone,
+                    UserId = t.UserId
+                }).ToListAsync();
+
             return Ok(tasks);
         }
 
