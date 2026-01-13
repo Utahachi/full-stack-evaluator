@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
-import './App.css';                 // styles for the app
-import TaskList from './components/TaskList';  // component that fetches and displays tasks
-import TaskForm from "./components/TaskForm";  // form to create new task
+import './App.css';
+import TaskList from './components/TaskList';
+import TaskForm from "./components/TaskForm";
+import { getTasks } from "./services/api";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Function to fetch tasks from backend
   const fetchTasks = async () => {
+    setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks`);
-      const data = await res.json();
-      setTasks(data);
+      const res = await getTasks();
+      setTasks(res.data);
     } catch (err) {
       console.error("Error fetching tasks:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Fetch tasks on component mount
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -26,11 +28,12 @@ function App() {
     <div className="app">
       <h1>📝 React Task Evaluator</h1>
 
-      {/* Form to create new task */}
+      {/* Pass fetchTasks as callback so TaskForm can refresh list */}
       <TaskForm onTaskCreated={fetchTasks} />
 
-      {/* Task list component */}
-      <TaskList tasks={tasks} />
+      {/* Pass tasks and refresh callback to TaskList */}
+      {loading ? <p>Loading tasks…</p> :
+        <TaskList tasks={tasks} onTaskUpdated={fetchTasks} />}
     </div>
   );
 }
